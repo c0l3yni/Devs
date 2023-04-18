@@ -1,0 +1,27 @@
+[
+	{
+		"id": 7,
+		"month": "July",
+		"netRevenue": 4494776435
+	},
+	{
+		"id": 8,
+		"month": "August",
+		"netRevenue": 28455440496
+	},
+	{
+		"id": 9,
+		"month": "September",
+		"netRevenue": 16025661516
+	},
+	{
+		"id": 10,
+		"month": "October",
+		"netRevenue": 13691101082
+	},
+	{
+		"id": 11,
+		"month": "November",
+		"netRevenue": 3512919354
+	}
+]

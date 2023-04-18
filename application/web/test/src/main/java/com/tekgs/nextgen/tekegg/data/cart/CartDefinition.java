@@ -4,8 +4,10 @@ package com.tekgs.nextgen.tekegg.data.cart;
 import com.google.gson.Gson;
 import com.tekgs.nextgen.tekegg.data.cart.item.ItemCalibratable;
 import com.tekgs.nextgen.tekegg.data.cart.item.ItemDefinition;
-import com.tekgs.nextgen.tekegg.data.financial.payment.TekEggPayment;
+import com.tekgs.nextgen.tekegg.data.financial.payment.TekEggPaymentDefinition;
+import com.tekgs.nextgen.tekegg.data.product.Product;
 import com.tekgs.nextgen.tekegg.data.product.ProductDefinition;
+import com.tekgs.nextgen.tekegg.data.product.ProductProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,16 +41,42 @@ public class CartDefinition implements CartCalibratable {
     @Override
     public Boolean isPurchasable() {
         Integer total = getTotal();
-        return total == null
-                ? isPurchasable
-                : total >= TekEggPayment.VALID_AMOUNT_MIN && total <= TekEggPayment.VALID_AMOUNT_MAX;
+        return total == null ? isPurchasable : total >= TekEggPaymentDefinition.VALID_AMOUNT_MIN && total <= TekEggPaymentDefinition.VALID_AMOUNT_MAX;
     }
-    
+
     @Override
     public Boolean isCartEmpty() {
         return this.isCartEmpty;
     }
-    
+
+    @Override
+    public CartCalibratable toPayload() {
+        if (Boolean.TRUE.equals(this.isCartEmpty) && this.total == null) {
+            return this;
+        }
+
+        if(this.items.isEmpty() && this.total != null) {
+            ProductDefinition productDefinition = ProductDefinition.getInstance().withPrice(this.total);
+            Product product = ProductProvider.getInstance().get(productDefinition);
+            ItemDefinition itemDefinition = ItemDefinition.getInstance().withProduct(product).withQuantity(1);
+            this.items.add(itemDefinition);
+        }
+        else {
+            List<ItemCalibratable> newItemsList = new ArrayList<>();
+            this.items.forEach(item -> {
+                String productId = item.getProduct().getId();
+                ProductDefinition productDefinition = ProductDefinition.getInstance().withId(productId);
+                Product product= ProductProvider.getInstance().get(productDefinition);
+                int quantity = item.getQuantity() == null ? 1 : item.getQuantity();
+                ItemDefinition itemDefinition = ItemDefinition.getInstance().withProduct(product).withQuantity(quantity);
+                newItemsList.add(itemDefinition);
+            });
+            this.items.clear();
+            this.items.addAll(newItemsList);
+        }
+        return this;
+    }
+
     @Override
     public boolean equivalent(CartCalibratable comparator) {
         return false;

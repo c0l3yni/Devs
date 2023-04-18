@@ -34,11 +34,6 @@ public class CartExpected implements CartCalibratable {
     }
     
     @Override
-    public Integer getTotal() {
-        return cart.getTotal();
-    }
-    
-    @Override
     public String getId() {
         return cart.getId();
     }

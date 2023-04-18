@@ -2,10 +2,8 @@ package com.tekgs.nextgen.tekegg.view.payment;
 
 import com.tekgs.nextgen.tekegg.data.cart.*;
 import com.tekgs.nextgen.tekegg.data.cart.item.ItemDefinition;
-import com.tekgs.nextgen.tekegg.data.financial.payment.TekEggPayment;
 import com.tekgs.nextgen.tekegg.data.financial.payment.TekEggPaymentDefinition;
 import com.tekgs.nextgen.tekegg.data.product.ProductCalibratable;
-import com.tekgs.nextgen.tekegg.data.product.ProductDefinition;
 import com.tekgs.nextgen.tekegg.view.cart.CartView;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.DataProvider;
@@ -59,7 +57,7 @@ public class PaymentViewTests extends GauntletTest {
 
     @Test(dependsOnMethods = "smoke", dataProvider = "directNavScenarios")
     public void directNav(CartDefinition cartDefinition) {
-        int shippingCost = TekEggPayment.getInstance().getShippingCost();
+        int shippingCost = TekEggPaymentDefinition.getShippingCost();
         cartDefinition.withTotal(cartDefinition.getTotal() - shippingCost);
         Cart cart = CartProvider.getInstance().get(cartDefinition);
         given(cart);
@@ -71,7 +69,7 @@ public class PaymentViewTests extends GauntletTest {
 
     @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke")
     public void release_directNav() {
-        int shippingCost = TekEggPayment.getInstance().getShippingCost();
+        int shippingCost = TekEggPaymentDefinition.getShippingCost();
         Integer amount = 50 - shippingCost;
         CartCalibratable cartDefinition = CartDefinition.getInstance().withTotal(amount);
         Cart cart = CartProvider.getInstance().get(cartDefinition);
@@ -83,8 +81,7 @@ public class PaymentViewTests extends GauntletTest {
     }
 
     @Test(groups = {}, dependsOnMethods = "smoke", dataProvider = "submitInvalidScenarios")
-    public void submitValidationError(TekEggPaymentDefinition paymentDefinition) {
-        TekEggPayment payment = TekEggPayment.getInstance(paymentDefinition);
+    public void submitValidationError(TekEggPaymentDefinition payment) {
         given(payment);
         PaymentViewExpected expected = PaymentViewExpected.getInstance(payment);
         when();
@@ -94,7 +91,7 @@ public class PaymentViewTests extends GauntletTest {
 
     @Test(dependsOnMethods = "smoke", dataProvider = "cartScenarios")
     public void fromCart(int quantityIncrement) {
-        CartDefinition cartDefinition = CartDefinition.getInstance().withItem(ItemDefinition.getInstance());
+        CartDefinition cartDefinition = CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withQuantityGreaterThanFive(true));
         Cart cart = CartProvider.getInstance().get(cartDefinition);
         int currentQuantity = cart.getAnyItem().getQuantity();
         int newQuantity = currentQuantity + quantityIncrement;
@@ -107,9 +104,9 @@ public class PaymentViewTests extends GauntletTest {
         then(PaymentViewCalibrator.getInstance(expected, actual));
     }
 
-    @Test(groups = {}, dependsOnMethods = "smoke")
+    @Test(groups = {TestSuite.ACCEPTANCE}, dependsOnMethods = "smoke")
     public void release_fromCart() {
-        CartDefinition cartDefinition = CartDefinition.getInstance().withItem(ItemDefinition.getInstance());
+        CartDefinition cartDefinition = CartDefinition.getInstance().withItem(ItemDefinition.getInstance().withQuantityGreaterThanFive(true));
         Cart cart = CartProvider.getInstance().get(cartDefinition);
         ProductCalibratable product = cart.getItems().get(0).getProduct();
         int newQuantity = cart.getItems().get(0).getQuantity() + 1;

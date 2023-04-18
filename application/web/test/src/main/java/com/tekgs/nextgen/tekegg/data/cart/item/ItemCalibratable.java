@@ -12,4 +12,6 @@ public interface ItemCalibratable {
     void increaseQuantity();
 
     void decreaseQuantity();
+
+    Boolean isQuantityGreaterThanFive();
 }

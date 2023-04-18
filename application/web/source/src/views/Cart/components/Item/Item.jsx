@@ -1,29 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import Product from "../../../../regions/ProductRegion/Product";
-import {getCartId} from "../../../../cart";
-import { updateItemQuantity } from "../../../../services/User/cartApi";
 import formatCurrency from "../../../../totals/formatCurrency";
 import calculateItemTotal from "../../../../totals/calculateItemTotal";
 import styles from "./styles";
+import getUrlParams from "../../../../urlParams/getUrlParams";
 
-function Item({ item, setUpdated }) {
-	const cartId = getCartId();
+function Item({ item,  updateQuantity }) {
+	const cartId = getUrlParams("cart_id");
 	const notFoundImage = "https://via.placeholder.com/1280x960.png?text=Image+Not+Found";
-	const [quantity, setQuantity] = useState(item.quantity);
 
 	const handleIncrease = () => {
-		setQuantity((prevState) => prevState + 1);
-		item.quantity += 1;
-		updateItemQuantity(cartId, item);
-		setUpdated([]);
+		const newQuantity =	item.quantity + 1;
+		const productId = item.product.id;
+		updateQuantity(cartId, newQuantity, productId);		
 	};
 
 	const handleDecrease = () => {
-		if (quantity > 0) {
-			setQuantity((prevState) => prevState - 1);
-			item.quantity -= 1;
-			updateItemQuantity(cartId, item);
-			setUpdated([]);
+		if (item.quantity > 0) {
+			const newQuantity =	item.quantity - 1;
+			const productId = item.product.id;
+			updateQuantity(cartId, newQuantity, productId);	
 		}
 	};
 
@@ -56,7 +52,7 @@ function Item({ item, setUpdated }) {
 								>
 									-
 								</button>
-								<h4 className={`item-quantity ${styles.quantity}`}>{quantity}</h4>
+								<h4 className={`item-quantity ${styles.quantity}`}>{item.quantity}</h4>
 								<button
 									className={`increase-quantity ${styles.quantityButton}`}
 									onClick={handleIncrease}

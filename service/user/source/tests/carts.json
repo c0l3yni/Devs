@@ -1,207 +1,235 @@
 [
-	{
-		"id": "1",
-		"items": [
-			{
-				"quantity": 6,
-				"product": {
-					"id": "2",
-					"title": "Product with null",
-					"description": null,
-					"stock": 4,
-					"price": 3214
-				}
-			},
-			{
-				"quantity": 10,
-				"product": {
-					"id": "3",
-					"title": "Product with html tag",
-					"description": "<h2>hack attempt<h2>",
-					"stock": 8,
-					"price": 112
-				}
-			},
-			{
-				"quantity": 10,
-				"product": {
-					"id": "4",
-					"title": "Product with 'Backspace Character'",
-					"description": "(U+2408)",
-					"stock": 10,
-					"price": 9797
-				}
-			},
-			{
-				"quantity": 3,
-				"product": {
-					"id": "5",
-					"title": "Product with word that is 256 characters in length",
-					"description": "kjhbafsbkjknbfjasbkjsfabkjasfbkjfasbkjhbkjhsafbkjhsfabkjhbkjsfakbjfsabkjsfabkjbkjfsabkjfsajbjk.fbkjsabjk.fkjasbfkjbasjbf.jkasjkfbjkas.jkbf.bjkasb.jkf.jkabsfbkj.asbfjkbasjkbfjksabjkbfjkasbfj.kbasj.kbfjkabsfjkbaskjkjf.ajksbafjkbbsajsbfkabasfkj.bsajkbafs.kbkj",
-					"stock": 3,
-					"price": 6441
-				}
-			},
-			{
-				"quantity": 0,
-				"product": {
-					"id": "6",
-					"title": "Product with SQL code",
-					"description": "SELECT * FROM Users WHERE UserId = 2",
-					"stock": 0,
-					"price": 1644
-				}
-			}
-		]
-	},
-	{
-		"id": "2",
-		"items": [
-			{
-				"quantity": 2,
-				"product": {
-					"id": "1",
-					"title": "Product 1",
-					"description": "product 1 description",
-					"stock": 1,
-					"price": 5099
-				}
-			}
-		]
-	},
-	{
-		"id": "3",
-		"items": [
-			{
-				"quantity": 4,
-				"product": {
-					"id": "1",
-					"title": "Product 1",
-					"description": "product 1 description",
-					"stock": 1,
-					"price": 5099
-				}
-			}
-		]
-	},
-	{
-		"id": "4",
-		"items": [
-			{
-				"quantity": 4,
-				"product": {
-					"id": "1",
-					"title": "Product 1",
-					"description": "product 1 description",
-					"stock": 1,
-					"price": 5099
-				}
-			}
-		]
-	},
-	{
-		"id": "5",
-		"items": [
-			{
-				"quantity": 1,
-				"product": {
-					"id": "1",
-					"title": "Product 1",
-					"description": "product 1 description",
-					"stock": 1,
-					"price": 5099
-				}
-			}
-		]
-	},
-	{
-		"id": "6",
-		"items": [
-			{
-				"quantity": 1,
-				"product": {
-					"id": "1",
-					"title": "Product 1",
-					"description": "product 1 description",
-					"stock": 1,
-					"price": 5099
-				}
-			}
-		]
-	},
-	{
-		"id": "7",
-		"items": [
-			{
-				"quantity": 1,
-				"product": {
-					"id": "1",
-					"title": "Product 1",
-					"description": "product 1 description",
-					"stock": 1,
-					"price": -951
-				}
-			}
-		]
-	},
-	{
-		"id": "8",
-		"items": [
-			{
-				"quantity": 1,
-				"product": {
-					"id": "1",
-					"title": "Product 1",
-					"description": "product 1 description",
-					"stock": 1,
-					"price": -950
-				}
-			}
-		]
-	},
-	{
-		"id": "9",
-		"items": [
-			{
-				"quantity": 1,
-				"product": {
-					"id": "1",
-					"title": "Product 1",
-					"description": "product 1 description",
-					"stock": 1,
-					"price": 99999000
-				}
-			}
-		]
-	},
-	{
-		"id": "10",
-		"items": [
-			{
-				"quantity": 1,
-				"product": {
-					"id": "1",
-					"title": "Product 1",
-					"description": "product 1 description",
-					"stock": 1,
-					"price": -1100
-				}
-			}
-		]
-	},
-	{
-		"id": "11",
-		"items": [
-			{
-				"quantity": 1,
-				"product": {
-					"id": "1",
-					"title": "Product 1",
-					"description": "product 1 description",
-					"stock": 1,
-					"price": 99998999
-				}
-			}
-		]
-	}
+  {
+    "id": "1",
+    "updatedAt": 1675438978,
+    "items": [
+      {
+        "quantity": 17,
+        "product": {
+          "id": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "updatedAt": 1675438978,
+    "items": [
+      {
+        "quantity": 12,
+        "product": {
+          "id": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "updatedAt": 1675438978,
+    "items": [
+      {
+        "quantity": 5,
+        "product": {
+          "id": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "updatedAt": 1673994947,
+    "items": [
+      {
+        "quantity": 1,
+        "product": {
+          "id": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "updatedAt": 1673994946,
+    "items": [
+      {
+        "quantity": 1,
+        "product": {
+          "id": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "updatedAt": 1673994945,
+    "items": [
+      {
+        "quantity": 1,
+        "product": {
+          "id": "8"
+        }
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "updatedAt": 1675380111,
+    "items": [
+      {
+        "quantity": 1,
+        "product": {
+          "id": "9"
+        }
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "updatedAt": 1673994943,
+    "items": [
+      {
+        "quantity": 1,
+        "product": {
+          "id": "10"
+        }
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "updatedAt": 1673994942,
+    "items": [
+      {
+        "quantity": 1,
+        "product": {
+          "id": "11"
+        }
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "updatedAt": 1673994941,
+    "items": [
+      {
+        "quantity": 1,
+        "product": {
+          "id": "12"
+        }
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "updatedAt": 1673994939,
+    "items": [
+      {
+        "quantity": 1,
+        "product": {
+          "id": "13"
+        }
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "updatedAt": 1673994938,
+    "items": [
+      {
+        "quantity": 1,
+        "product": {
+          "id": "14"
+        }
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "updatedAt": 1673994937,
+    "items": [
+      {
+        "quantity": 13,
+        "product": {
+          "id": "2"
+        }
+      },
+      {
+        "quantity": 12,
+        "product": {
+          "id": "3"
+        }
+      },
+      {
+        "quantity": 10,
+        "product": {
+          "id": "4"
+        }
+      },
+      {
+        "quantity": 3,
+        "product": {
+          "id": "5"
+        }
+      },
+      {
+        "quantity": 0,
+        "product": {
+          "id": "6"
+        }
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "updatedAt": 1675380287,
+    "items": [
+      {
+        "quantity": 1,
+        "product": {
+          "id": "1"
+        }
+      },
+      {
+        "quantity": 1,
+        "product": {
+          "id": "2"
+        }
+      },
+      {
+        "quantity": 1,
+        "product": {
+          "id": "3"
+        }
+      },
+      {
+        "quantity": 1,
+        "product": {
+          "id": "4"
+        }
+      },
+      {
+        "quantity": 1,
+        "product": {
+          "id": "5"
+        }
+      },
+      {
+        "quantity": 1,
+        "product": {
+          "id": "6"
+        }
+      },
+      {
+        "quantity": 1,
+        "product": {
+          "id": "7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "updatedAt": 1673994938,
+    "items": []
+  }
 ]

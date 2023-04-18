@@ -11,11 +11,14 @@ import java.util.List;
 
 public class CartResponse implements CartResponseCalibratable {
     private final Response.StatusType statusInfo;
-    private final List<Cart> carts;
+    private List<Cart> carts = new ArrayList<>();
     
     public CartResponse(Response response) {
         statusInfo = response.getStatusInfo();
+        if (response.hasEntity()) {
+        
         carts = response.readEntity(new GenericType<>() {});
+        }
     }
     
     public static CartResponse getInstance(Response response) {

@@ -20,4 +20,8 @@ public class CartResponse {
     public List<Cart> getCartList() {
         return carts;
     }
+
+    public Cart getCart() {
+        return this.carts.get(0);
+    }
 }

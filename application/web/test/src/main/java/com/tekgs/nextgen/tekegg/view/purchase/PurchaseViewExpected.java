@@ -1,11 +1,11 @@
 package com.tekgs.nextgen.tekegg.view.purchase;
 
-import com.tekgs.nextgen.tekegg.data.financial.payment.TekEggPayment;
+import com.tekgs.nextgen.tekegg.data.financial.payment.TekEggPaymentDefinition;
 
 public class PurchaseViewExpected implements PurchaseViewCalibratable {
-    private final TekEggPayment payment;
+    private final TekEggPaymentDefinition payment;
 
-    public PurchaseViewExpected(TekEggPayment payment) {
+    public PurchaseViewExpected(TekEggPaymentDefinition payment) {
         this.payment = payment;
     }
 
@@ -13,7 +13,7 @@ public class PurchaseViewExpected implements PurchaseViewCalibratable {
         return new PurchaseViewExpected(null);
     }
 
-    public static PurchaseViewExpected getInstance(TekEggPayment payment) {
+    public static PurchaseViewExpected getInstance(TekEggPaymentDefinition payment) {
         return new PurchaseViewExpected(payment);
     }
 

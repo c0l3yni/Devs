@@ -44,7 +44,7 @@ task debug(type: Test) {
     useTestNG { includeGroups 'debug' }
 }
 task deployment(type: Test) {
-    useTestNG { includeGroups 'acceptance', 'release' }
+    useTestNG { includeGroups 'acceptance', 'release', 'smoke' }
 }
 
 tasks.withType(Test) {

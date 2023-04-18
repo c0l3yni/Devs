@@ -2,6 +2,7 @@ package com.tekgs.nextgen.tekegg.user.cart;
 
 import com.tekgs.nextgen.tekegg.data.cart.*;
 import com.tekgs.nextgen.tekegg.data.cart.item.ItemCalibratable;
+import com.tekgs.nextgen.tekegg.data.cart.item.ItemDefinition;
 import com.tekgs.nextgen.tekegg.data.cart.product.ProductCalibratable;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.Test;
@@ -15,20 +16,19 @@ public class CartResponseTests extends GauntletTest {
         CartResponseExpected expected = CartResponseExpected.getInstance();
         given();
         when();
-        CartResponse actual = CartRequest.getInstance().getAll();
+        CartResponse actual = CartRequest.getInstance().head();
         then(CartResponseCalibrator.getInstance(expected, actual));
     }
     
     @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke")
     public void getById() {
-        String cartId = "1";
-        CartCalibratable cartDefinition = CartDefinition.getInstance().withID(cartId);
+        CartCalibratable cartDefinition = CartDefinition.getInstance();
         Cart cart = CartProvider.getInstance().get(cartDefinition);
         given(cart);
         CartExpected cartExpected = CartExpected.getInstance(cart);
         CartResponseExpected expected = CartResponseExpected.getInstance(cartExpected);
         when();
-        CartResponse actual = CartRequest.getInstance(cartId).getById();
+        CartResponse actual = CartRequest.getInstance(cart).get();
         then(CartResponseCalibrator.getInstance(expected, actual));
     }
     
@@ -36,14 +36,16 @@ public class CartResponseTests extends GauntletTest {
     public void put() {
         CartCalibratable cartDefinition = CartDefinition.getInstance();
         Cart cart = CartProvider.getInstance().get(cartDefinition);
-        given(cart);
         ItemCalibratable cartItem = cart.getItems().get(0);
         ProductCalibratable product = cartItem.getProduct();
         int newQuantity = cartItem.getQuantity() + 1;
+        ItemDefinition itemDefinition = ItemDefinition.getInstance(cartItem).withQuantity(newQuantity);
+        given(cart);
         CartExpected cartExpected = CartExpected.getInstance(cart, product, newQuantity);
         CartResponseExpected expected = CartResponseExpected.getInstance(cartExpected);
         when();
-        CartResponse actual = CartRequest.getInstance(cart.getId(), product.getId(), newQuantity).put();
+        CartDefinition updatedCart = CartDefinition.getInstance(cart).withUpdatedItem(itemDefinition);
+        CartResponse actual = CartRequest.getInstance(updatedCart).put();
         then(CartResponseCalibrator.getInstance(expected, actual));
     }
 }

@@ -6,7 +6,6 @@
 		"stock": 1,
 		"price": 5099,
 		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/32-116-471-01.jpg"
-
 	},
 	{
 		"id": "2",
@@ -15,7 +14,6 @@
 		"stock": 4,
 		"price": 3214,
 		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-118-412-V01.jpg"
-
 	},
 	{
 		"id": "3",
@@ -24,7 +22,6 @@
 		"stock": 8,
 		"price": 112,
 		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/B8EHS2201201D5Q00BF.jpg"
-
 	},
 	{
 		"id": "4",
@@ -33,7 +30,6 @@
 		"stock": -2,
 		"price": 9797,
 		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/83-101-874-03.jpg"
-
 	},
 	{
 		"id": "5",
@@ -41,8 +37,7 @@
 		"description": "kjhbafsbkjknbfjasbkjsfabkjasfbkjfasbkjhbkjhsafbkjhsfabkjhbkjsfakbjfsabkjsfabkjbkjfsabkjfsajbjk.fbkjsabjk.fkjasbfkjbasjbf.jkasjkfbjkas.jkbf.bjkasb.jkf.jkabsfbkj.asbfjkbasjkbfjksabjkbfjkasbfj.kbasj.kbfjkabsfjkbaskjkjf.ajksbafjkbbsajsbfkabasfkj.bsajkbafs.kbkj",
 		"stock": 3,
 		"price": 6441,
-		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-331-417-V05.jpg"
-
+		"thumbnail": null
 	},
 	{
 		"id": "6",
@@ -51,7 +46,6 @@
 		"stock": 0,
 		"price": 1644,
 		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-236-233-V21.jpg"
-
 	},
 	{
 		"id": "7",
@@ -60,5 +54,61 @@
 		"stock": 1,
 		"price": 1644,
 		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/32-351-748-V01.jpg"
+	},
+	{
+		"id": "8",
+		"title": "Product 1",
+		"description": "product 1 description",
+		"stock": 1,
+		"price": -951,
+		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/32-116-471-01.jpg"
+	},
+	{
+		"id": "9",
+		"title": "Product 1",
+		"description": "product 1 description",
+		"stock": 1,
+		"price": -950,
+		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/32-116-471-01.jpg"
+	},
+	{
+		"id": "10",
+		"title": "Product 1",
+		"description": "product 1 description",
+		"stock": 1,
+		"price": 99999000,
+		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/32-116-471-01.jpg"
+	},
+	{
+		"id": "11",
+		"title": "Product 1",
+		"description": "product 1 description",
+		"stock": 1,
+		"price": -1100,
+		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/32-116-471-01.jpg"
+	},
+	{
+		"id": "12",
+		"title": "Product 1",
+		"description": "product 1 description",
+		"stock": 1,
+		"price": 99998999,
+		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/32-116-471-01.jpg"
+	},
+	{
+		"id": "13",
+		"title": "Product 1",
+		"description": "product 1 description",
+		"stock": 1,
+		"price": 49,
+		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/32-116-471-01.jpg"
+	},
+	{
+		"id": "14",
+		"title": "Product 1",
+		"description": "product 1 description",
+		"stock": 1,
+		"price": 90000001,
+		"thumbnail": "https://c1.neweggimages.com/ProductImageCompressAll1280/32-116-471-01.jpg"
 	}
 ]

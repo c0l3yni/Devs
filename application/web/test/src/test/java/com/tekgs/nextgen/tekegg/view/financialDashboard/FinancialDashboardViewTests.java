@@ -2,9 +2,6 @@ package com.tekgs.nextgen.tekegg.view.financialDashboard;
 
 import com.tekgs.nextgen.tekegg.data.financial.revenue.Revenue;
 import com.tekgs.nextgen.tekegg.data.financial.revenue.RevenueProvider;
-import com.tekgs.nextgen.tekegg.view.financialDashboard.FinancialDashboardView;
-import com.tekgs.nextgen.tekegg.view.financialDashboard.FinancialDashboardViewCalibrator;
-import com.tekgs.nextgen.tekegg.view.financialDashboard.FinancialDashboardViewExpected;
 import org.softwareonpurpose.gauntlet.GauntletTest;
 import org.testng.annotations.Test;
 

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import calculateSubTotal from "../../totals/calculateSubTotal";
 import PaymentForm from "./components/PaymentForm/PaymentForm";
 import PaymentSummary from "./components/PaymentSummary/PaymentSummary";
-import {getCartId} from "../../cart";
-import { getCartById } from "../../services/User/cartApi";
+import { getCartById } from "../../tekEggService/cart";
 import styles from "./styles";
+import getUrlParams from "../../urlParams/getUrlParams";
 
 function Payment() {
     const [cart, setCart] = useState({});
@@ -13,7 +13,7 @@ function Payment() {
     const total = subtotal + shippingAmount;
 
     useEffect(() => {
-        const cartId = getCartId();
+        const cartId = getUrlParams("cart_id");
         if (cartId) {
             getCartById(cartId).then((cart) => {
                 setCart(cart);

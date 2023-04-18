@@ -10,18 +10,20 @@ public class ProductRequest {
     private static final String ENDPOINT = "inventory";
     private static final String INVENTORY_SERVICE_URI = String.format("%s/%s", DOMAIN_URL, ENDPOINT);
     Client client;
+    private final String id;
     
-    public ProductRequest() {
+    public ProductRequest(String id) {
         this.client = ClientBuilder.newClient();
+        this.id = id;
     }
     
-    public static ProductRequest getInstance() {
-        return new ProductRequest();
+    public static ProductRequest getInstance(String id) {
+        return new ProductRequest(id);
     }
     
-    public ProductResponse getAll() {
+    public ProductResponse get() {
         ProductResponse productResponse;
-        WebTarget target = client.target(INVENTORY_SERVICE_URI);
+        WebTarget target = client.target(String.format("%s/%s", INVENTORY_SERVICE_URI, id));
         try (Response response = target.request().get()) {
             productResponse = ProductResponse.getInstance(response);
         } finally {

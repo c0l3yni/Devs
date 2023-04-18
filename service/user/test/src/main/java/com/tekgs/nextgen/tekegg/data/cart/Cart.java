@@ -12,6 +12,7 @@ public class Cart implements CartCalibratable {
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private final List<Item> items = new ArrayList<>();
     private final String id;
+    private final Long updatedAt;
 
     @SuppressWarnings("unused")
     private Cart() {
@@ -20,6 +21,7 @@ public class Cart implements CartCalibratable {
 
     private Cart(CartCalibratable cartDefinition) {
         this.id = cartDefinition != null && cartDefinition.getId() != null ? cartDefinition.getId() : String.valueOf(-1);
+        this.updatedAt = null;
     }
 
     public static Cart getInstance() {
@@ -35,15 +37,13 @@ public class Cart implements CartCalibratable {
     }
 
     @Override
-    public Integer getTotal() {
-        return this.items.stream().reduce(0, (subTotal, item) -> subTotal + item.getProduct().getPrice() * item.getQuantity(), Integer::sum);
-    }
-
-    @Override
     public List<ItemCalibratable> getItems() {
         return new ArrayList<>(this.items);
     }
 
+    public Long getUpdatedAt(){
+        return updatedAt;
+    }
     @Override
     public boolean equivalent(CartCalibratable comparator) {
         if (comparator == null) {
@@ -52,9 +52,7 @@ public class Cart implements CartCalibratable {
         if (comparator.getId() != null && this.getId().equals(comparator.getId())) {
             return true;
         }
-        boolean isTotalMatch = comparator.getTotal() == null || comparator.getTotal().equals(this.getTotal());
-        boolean areProductsMatch = comparator.getItems().isEmpty() || itemsAreEquivalent(comparator.getItems());
-        return isTotalMatch && areProductsMatch;
+        return itemsAreEquivalent(comparator.getItems());
     }
 
     private boolean itemsAreEquivalent(List<ItemCalibratable> comparatorItems) {

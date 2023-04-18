@@ -4,12 +4,12 @@ import com.softwareonpurpose.uinavigator.UiElement;
 import com.softwareonpurpose.uinavigator.UiLocatorType;
 import com.softwareonpurpose.uinavigator.UiView;
 import com.tekgs.nextgen.tekegg.data.cart.Cart;
-import com.tekgs.nextgen.tekegg.data.financial.payment.TekEggPayment;
+import com.tekgs.nextgen.tekegg.data.financial.payment.TekEggPaymentDefinition;
 import com.tekgs.nextgen.tekegg.view.TekEggView;
 import com.tekgs.nextgen.tekegg.view.purchase.PurchaseView;
 
 
-public class    PaymentView extends TekEggView implements PaymentViewCalibratable {
+public class PaymentView extends TekEggView implements PaymentViewCalibratable {
     private static final String LOCATOR_VALUE = "payment";
     private static final String LOCATOR_TYPE = UiLocatorType.ID;
     private static final String DESCRIPTION = "'Payment' view";
@@ -69,14 +69,14 @@ public class    PaymentView extends TekEggView implements PaymentViewCalibratabl
         return subtotalAmountElement.getText();
     }
 
-    public PurchaseView submit(TekEggPayment payment) {
+    public PurchaseView submit(TekEggPaymentDefinition payment) {
         getCurrencyElement().set(payment.getCurrency());
         getSourceElement().set(payment.getSource());
         getSubmitElement().click();
         return UiView.expect(PurchaseView.class);
     }
 
-    public PaymentView submitInvalid(TekEggPayment payment) {
+    public PaymentView submitInvalid(TekEggPaymentDefinition payment) {
         getCurrencyElement().set(payment.getCurrency());
         getSourceElement().set(payment.getSource());
         getSubmitElement().click();

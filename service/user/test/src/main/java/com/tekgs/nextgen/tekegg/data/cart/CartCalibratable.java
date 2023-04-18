@@ -5,7 +5,6 @@ import com.tekgs.nextgen.tekegg.data.cart.item.ItemCalibratable;
 import java.util.List;
 
 public interface CartCalibratable {
-    Integer getTotal();
     
     String getId();
     

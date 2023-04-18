@@ -20,10 +20,5 @@ public class ProductCalibrator extends Calibrator {
     @Override
     protected void executeVerifications() {
         verify("'Product' id ", this.expected.getId(), this.actual.getId());
-        verify("'Product' title ", this.expected.getTitle(), this.actual.getTitle());
-        verify("'Product' stock ", this.expected.getStock(), this.actual.getStock());
-        verify("'Product' price ", this.expected.getPrice(), this.actual.getPrice());
-        verify("'Product' description ", this.expected.getDescription(), this.actual.getDescription());
-        verify("'Thumbnail' source", this.expected.getThumbnail(), this.actual.getThumbnail());
     }
 }

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import postPayment from "../../../../services/Stripe/postPayment";
+import postPayment from "../../../../tekEggService/stripe";
 import { validateCurrency, validateSource, verifyPaymentSuccess } from "../../validatePayment";
 import styles from "./styles";
 

@@ -3,6 +3,7 @@ package com.tekgs.nextgen.tekegg.data.cart;
 
 import com.google.gson.Gson;
 import com.tekgs.nextgen.tekegg.data.cart.item.ItemCalibratable;
+import com.tekgs.nextgen.tekegg.data.cart.item.ItemDefinition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,16 +11,21 @@ import java.util.List;
 public class CartDefinition implements CartCalibratable {
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private final List<ItemCalibratable> items = new ArrayList<>();
-    private Integer total;
     private String id;
     
-    public static CartDefinition getInstance() {
-        return new CartDefinition();
+    private CartDefinition(CartCalibratable cart) {
+        if (cart != null) {
+            this.items.addAll(cart.getItems());
+            this.id = cart.getId();
+        }
     }
     
-    @Override
-    public Integer getTotal() {
-        return this.total;
+    public static CartDefinition getInstance() {
+        return new CartDefinition(null);
+    }
+    
+    public static CartDefinition getInstance(CartCalibratable cart) {
+        return new CartDefinition(cart);
     }
     
     @Override
@@ -42,8 +48,8 @@ public class CartDefinition implements CartCalibratable {
         return String.format("%s %s ", this.getClass().getSimpleName(), new Gson().toJson(this));
     }
     
-    public CartDefinition withID(String ID) {
-        this.id = ID;
+    public CartDefinition withUpdatedItem(ItemDefinition itemDefinition) {
+        this.items.set(0, itemDefinition);
         return this;
     }
 }

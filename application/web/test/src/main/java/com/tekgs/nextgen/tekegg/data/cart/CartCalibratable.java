@@ -16,4 +16,6 @@ public interface CartCalibratable {
     Boolean isPurchasable();
     
     Boolean isCartEmpty();
+
+    CartCalibratable toPayload();
 }

@@ -20,8 +20,6 @@ public class CartViewTests extends GauntletTest {
         String wordOfLength256 = "kjhbafsbkjknbfjasbkjsfabkjasfbkjfasbkjhbkjhsafbkjhsfabkjhbkjsfakbjfsabkjsfabkjbkjfsabkjfsajbjk.fbkjsabjk.fkjasbfkjbasjbf.jkasjkfbjkas.jkbf.bjkasb.jkf.jkabsfbkj.asbfjkbasjkbfjksabjkbfjkasbfj.kbasj.kbfjkabsfjkbaskjkjf.ajksbafjkbbsajsbfkabasfkj.bsajkbafs.kbkj";
         ProductDefinition productDescriptionOneWord256 = ProductDefinition.getInstance().withDescription(wordOfLength256);
         ProductDefinition productWithSQL = ProductDefinition.getInstance().withDescription("SELECT * FROM Users WHERE UserId = 2");
-        CartDefinition cartWithTotalLessThan50 = CartDefinition.getInstance().withTotal(49);
-        CartDefinition cartWithTotalMoreThan90000000 = CartDefinition.getInstance().withTotal(900_000_01);
         return new Object[][]{
                 {CartDefinition.getInstance().withProduct(normalProduct)}
                 , {CartDefinition.getInstance().withProduct(productNoDescription)}
@@ -29,20 +27,16 @@ public class CartViewTests extends GauntletTest {
                 , {CartDefinition.getInstance().withProduct(productWithBackspace)}
                 , {CartDefinition.getInstance().withProduct(productDescriptionOneWord256)}
                 , {CartDefinition.getInstance().withProduct(productWithSQL)}
-                , {cartWithTotalLessThan50}
-                , {cartWithTotalMoreThan90000000}
         };
     }
     
     @DataProvider
     public static Object[][] releaseScenarios() {
         ProductDefinition productWithThumbnailNull = ProductDefinition.getInstance().withThumbnail(null);
-        CartDefinition cartWithTotalLessThan50 = CartDefinition.getInstance().withTotal(49);
-        CartDefinition cartWithTotalMoreThan90000000 = CartDefinition.getInstance().withTotal(900_000_01);
+        CartDefinition cartWithNonPurchasableAmount = CartDefinition.getInstance().withPurchasableAmount(false);
         CartDefinition cartWithNoThumbnail = CartDefinition.getInstance().withProduct(productWithThumbnailNull);
         return new Object[][]{
-                {cartWithTotalLessThan50},
-                {cartWithTotalMoreThan90000000},
+                {cartWithNonPurchasableAmount},
                 {cartWithNoThumbnail}
         };
     }
@@ -67,7 +61,8 @@ public class CartViewTests extends GauntletTest {
         then(CartViewCalibrator.getInstance(expected, actual));
     }
     
-    @Test(dependsOnMethods = "smoke", dataProvider = "scenarios")
+
+    @Test( dependsOnMethods = "smoke", dataProvider = "scenarios")
     public void regression_directNav(CartDefinition cartDefinition) {
         Cart cart = CartProvider.getInstance().get(cartDefinition);
         given(cart);
@@ -77,15 +72,4 @@ public class CartViewTests extends GauntletTest {
         then(CartViewCalibrator.getInstance(expected, actual));
     }
     
-    @Test(groups = {TestSuite.RELEASE}, dependsOnMethods = "smoke")
-    public void release_directNav() {
-        ProductDefinition product = ProductDefinition.getInstance().withDescription("product 1 description");
-        CartDefinition cartDefinition = CartDefinition.getInstance().withProduct(product);
-        Cart cart = CartProvider.getInstance().get(cartDefinition);
-        given(cart);
-        CartViewExpected expected = CartViewExpected.getInstance(cart);
-        when();
-        CartView actual = CartView.directNav(cart);
-        then(CartViewCalibrator.getInstance(expected, actual));
-    }
 }

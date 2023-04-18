@@ -33,6 +33,7 @@ public class Item implements ItemCalibratable {
         }
         boolean isEquivalent = comparator.getProduct() == null || (this.product != null && this.product.equivalent(comparator.getProduct()));
         isEquivalent &= areEquivalent(comparator.getQuantity(), this.getQuantity());
+        isEquivalent &= areEquivalent(comparator.isQuantityGreaterThanFive(), this.isQuantityGreaterThanFive());
         return isEquivalent;
     }
 
@@ -43,4 +44,10 @@ public class Item implements ItemCalibratable {
     @Override
     public void decreaseQuantity() {
     }
+    
+    @Override
+    public Boolean isQuantityGreaterThanFive() {
+        return this.getQuantity() > 5;
+    }
+    
 }

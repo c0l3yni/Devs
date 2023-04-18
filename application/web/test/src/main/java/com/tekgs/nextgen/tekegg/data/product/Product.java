@@ -34,15 +34,17 @@ public class Product implements ProductCalibratable {
 
     @Override
     public boolean equivalent(ProductCalibratable comparator) {
+        boolean isEquivalent=true;
         if (comparator == null) {
             return false;
         }
-        if (comparator.getId() != null && this.getId().equals(comparator.getId())) {
-            return true;
+        if (comparator.getId() != null ) {
+            isEquivalent = this.getId().equals(comparator.getId());
         }
-        String defaultDescription = this.getDescription() == null || HIDDEN_BACKSPACE_CHARACTER.equals(this.getDescription()) ? DEFAULT_DESCRIPTION : this.getDescription();
+        String thisDescription = this.getDescription() == null || HIDDEN_BACKSPACE_CHARACTER.equals(this.getDescription()) ? DEFAULT_DESCRIPTION : this.getDescription();
+        String comparatorDescription = comparator.getDescription() == null || HIDDEN_BACKSPACE_CHARACTER.equals(comparator.getDescription()) ? DEFAULT_DESCRIPTION : comparator.getDescription();
         String defaultThumbnail = this.getThumbnail() == null ? DEFAULT_THUMBNAIL : this.getThumbnail();
-        boolean isEquivalent = areEquivalent(comparator.getDescription(), defaultDescription);
+        isEquivalent &= "".equals(comparatorDescription) || areEquivalent( comparatorDescription, thisDescription);
         isEquivalent &= areEquivalent(comparator.getTitle(), this.getTitle());
         isEquivalent &= areEquivalent(comparator.getStock(), this.getStock());
         isEquivalent &= areEquivalent(comparator.getPrice(), this.getPrice());

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { getCartId, isProductInCart } from "../../../../cart";
+import { isProductInCart } from "../../../../cart";
 import Product from "../../../../regions/ProductRegion/Product";
-import { getAllProducts } from "../../../../services/Inventory/inventoryApi";
-import { getCartById } from "../../../../services/User/cartApi";
+import { getAllProducts } from "../../../../tekEggService/inventory";
+import { getCartById } from "../../../../tekEggService/cart";
 import styles from "./styles";
+import getUrlParams from "../../../../urlParams/getUrlParams";
 
 function ProductList() {
 	const [inventory, setInventory] = useState([]);
@@ -12,7 +13,7 @@ function ProductList() {
 		getAllProducts().then((inventoryData) => {
 			setInventory(inventoryData);
 		});
-		const cartId = getCartId();
+		const cartId = getUrlParams("cart_id");
 		if (cartId) getCartById(cartId).then((cart) => setItems(cart.items));
 	}, []);
 	const renderEmptyMessage = () => {

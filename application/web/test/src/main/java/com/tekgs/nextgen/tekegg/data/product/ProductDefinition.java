@@ -55,7 +55,7 @@ public class ProductDefinition implements ProductCalibratable {
 
     @Override
     public Integer getPrice() {
-        return null;
+        return this.price;
     }
 
     @Override
@@ -65,6 +65,16 @@ public class ProductDefinition implements ProductCalibratable {
 
     public ProductDefinition withThumbnail(String thumbnail) {
         this.thumbnail = thumbnail == null ? DEFAULT_THUMBNAIL : thumbnail;
+        return this;
+    }
+
+    public ProductDefinition withPrice(Integer price) {
+        this.price = price;
+        return this;
+    }
+
+    public ProductDefinition withId(String productId) {
+        this.id = productId;
         return this;
     }
 }

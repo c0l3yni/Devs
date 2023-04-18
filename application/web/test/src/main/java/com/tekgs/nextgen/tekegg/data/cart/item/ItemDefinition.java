@@ -5,7 +5,8 @@ import com.tekgs.nextgen.tekegg.data.product.ProductCalibratable;
 public class ItemDefinition implements ItemCalibratable {
     private ProductCalibratable product;
     private Integer quantity;
-
+    private boolean isQuantityGreaterThanFive = false;
+    
     public static ItemDefinition getInstance() {
         return new ItemDefinition();
     }
@@ -35,7 +36,12 @@ public class ItemDefinition implements ItemCalibratable {
     public void decreaseQuantity() {
         this.quantity -= 1;
     }
-
+    
+    @Override
+    public Boolean isQuantityGreaterThanFive() {
+        return this.getQuantity() == null ? this.isQuantityGreaterThanFive : this.getQuantity() > 5;
+    }
+    
     public ItemDefinition withProduct(ProductCalibratable product) {
         this.product = product;
         return this;
@@ -43,6 +49,11 @@ public class ItemDefinition implements ItemCalibratable {
 
     public ItemDefinition withQuantity(int newQuantity) {
         this.quantity = newQuantity;
+        return this;
+    }
+    
+    public ItemDefinition withQuantityGreaterThanFive(boolean isQuantityGreaterThanFive) {
+        this.isQuantityGreaterThanFive = isQuantityGreaterThanFive;
         return this;
     }
 }

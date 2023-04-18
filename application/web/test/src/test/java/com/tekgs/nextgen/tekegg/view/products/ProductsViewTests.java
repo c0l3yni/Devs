@@ -24,7 +24,7 @@ public class ProductsViewTests extends GauntletTest {
         products.forEach(product -> allItems.add(ItemDefinition.getInstance().withProduct(product)));
         return new Object[][]{
                 {CartDefinition.getInstance().withNoItems()},
-                {CartDefinition.getInstance().withItems(allItems)}
+                {CartDefinition.getInstance().withItems(allItems).withPurchasableAmount(false)}
 
         };
     }
@@ -46,7 +46,8 @@ public class ProductsViewTests extends GauntletTest {
         ProductsView actual = ProductsView.directNav(cart);
         then(ProductsViewCalibrator.getInstance(expected, actual));
     }
-    @Test( dependsOnMethods = "smoke", dataProvider = "scenarios")
+
+    @Test(dependsOnMethods = "smoke", dataProvider = "scenarios")
     public void release_directNav(CartDefinition cartDefinition){
         addRequirements("127-products-add-to-cart-button-disabled-for-items-in-cart ");
         Cart cart = CartProvider.getInstance().get(cartDefinition);

@@ -1,29 +1,22 @@
 package com.tekgs.nextgen.tekegg.user.cart;
 
+import com.tekgs.nextgen.tekegg.data.cart.CartCalibratable;
+
+@SuppressWarnings("ClassCanBeRecord")
 public class CartRequestPayload {
-    private final String cartId;
-    private final String productId;
-    private final Integer quantity;
-
-    public CartRequestPayload(String cartId, String productId, Integer quantity) {
-        this.cartId = cartId;
-        this.productId = productId;
-        this.quantity = quantity;
+    
+    private final CartCalibratable cart;
+    
+    public CartRequestPayload(CartCalibratable cart) {
+        this.cart = cart;
+        
     }
-
-    public static CartRequestPayload getInstance(String cartId, String productId, Integer quantity) {
-        return new CartRequestPayload(cartId, productId, quantity);
+    
+    public static CartRequestPayload getInstance(CartCalibratable cart) {
+        return new CartRequestPayload(cart);
     }
-
-    public String getCartId() {
-        return cartId;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
+    
+    public CartCalibratable getCart() {
+        return this.cart;
     }
 }

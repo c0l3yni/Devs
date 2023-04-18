@@ -1,4 +1,4 @@
-import postPayment from "../../src/services/Stripe/postPayment";
+import postPayment from "../../src/tekEggService/stripe";
 import { expect } from "expect";
 
 const scenarios = [
@@ -35,12 +35,8 @@ const scenarios = [
     false,
   ],
 ];
-test.each(scenarios)("postPaymentTest data:%s", async (input,expected) => {
-  const data = await postPayment(
-    input.amount,
-    input.currency,
-    input.source
-  );
-  const actual = !data.error;
+test.each(scenarios)("postPaymentTest data:%s", async (input, expected) => {
+  const data = await postPayment(input.amount, input.currency, input.source);
+  const actual = expected ? !data.error: !data.response.data.error;
   expect(actual).toBe(expected);
 });

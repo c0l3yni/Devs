@@ -39,4 +39,10 @@ public class ItemExpected implements ItemCalibratable {
     public void decreaseQuantity() {
         this.quantity -= 1;
     }
+    
+    @Override
+    public Boolean isQuantityGreaterThanFive() {
+        return this.getQuantity() > 5;
+    }
+    
 }

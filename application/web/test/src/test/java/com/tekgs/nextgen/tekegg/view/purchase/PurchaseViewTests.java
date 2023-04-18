@@ -1,10 +1,8 @@
 package com.tekgs.nextgen.tekegg.view.purchase;
 
 import com.tekgs.nextgen.tekegg.data.cart.Cart;
-import com.tekgs.nextgen.tekegg.data.cart.CartCalibratable;
 import com.tekgs.nextgen.tekegg.data.cart.CartDefinition;
 import com.tekgs.nextgen.tekegg.data.cart.CartProvider;
-import com.tekgs.nextgen.tekegg.data.financial.payment.TekEggPayment;
 import com.tekgs.nextgen.tekegg.data.financial.payment.TekEggPaymentDefinition;
 import com.tekgs.nextgen.tekegg.view.payment.PaymentView;
 import org.softwareonpurpose.gauntlet.GauntletTest;
@@ -33,9 +31,8 @@ public class PurchaseViewTests extends GauntletTest {
 
     @Test(groups = {TestSuite.SMOKE})
     public void smoke() {
-        TekEggPaymentDefinition tekEggPaymentDefinition = TekEggPaymentDefinition.getInstance().withAmount(50).withCurrency("usd").withSource("tok_amex");
-        TekEggPayment payment = TekEggPayment.getInstance(tekEggPaymentDefinition);
-        Integer amount = payment.getAmount() - payment.getShippingCost();
+        TekEggPaymentDefinition payment = TekEggPaymentDefinition.getInstance().withAmount(50).withCurrency("usd").withSource("tok_amex");
+        Integer amount = payment.getAmount() - TekEggPaymentDefinition.getShippingCost();
         Cart cart = CartProvider.getInstance().get(CartDefinition.getInstance().withTotal(amount));
         given(payment);
         PurchaseViewExpected expected = PurchaseViewExpected.getInstance(payment);
@@ -44,10 +41,10 @@ public class PurchaseViewTests extends GauntletTest {
         then(PurchaseViewCalibrator.getInstance(expected, actual));
     }
 
+
     @Test(dependsOnMethods = "smoke", dataProvider = "scenarios")
-    public void fromPayment(TekEggPaymentDefinition tekEggPaymentDefinition) {
-        TekEggPayment payment = TekEggPayment.getInstance(tekEggPaymentDefinition);
-        Integer amount = payment.getAmount() - payment.getShippingCost();
+    public void fromPayment(TekEggPaymentDefinition payment) {
+        Integer amount = payment.getAmount() - TekEggPaymentDefinition.getShippingCost();
         Cart cart = CartProvider.getInstance().get(CartDefinition.getInstance().withTotal(amount));
         given(cart);
         PurchaseViewExpected expected = PurchaseViewExpected.getInstance(payment);
@@ -59,12 +56,11 @@ public class PurchaseViewTests extends GauntletTest {
     public void release_fromPayment() {
         CartDefinition cartDefinition = CartDefinition.getInstance().withPurchasableAmount(true);
         Cart cart = CartProvider.getInstance().get(cartDefinition);
-        TekEggPaymentDefinition tekEggPaymentDefinition =
+        TekEggPaymentDefinition payment =
                 TekEggPaymentDefinition.getInstance()
-                        .withAmount(cart.getTotal())
-                        .withCurrency(TekEggPayment.Currency.USD)
-                        .withSource(TekEggPayment.Source.AMEX);
-        TekEggPayment payment = TekEggPayment.getInstance(tekEggPaymentDefinition);
+                        .withAmount(cart.getTotal() + TekEggPaymentDefinition.getShippingCost())
+                        .withCurrency(TekEggPaymentDefinition.Currency.USD)
+                        .withSource(TekEggPaymentDefinition.Source.AMEX);
         given(cart,payment);
         PurchaseViewExpected expected = PurchaseViewExpected.getInstance(payment);
         when();

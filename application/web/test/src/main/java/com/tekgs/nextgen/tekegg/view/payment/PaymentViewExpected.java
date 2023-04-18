@@ -2,18 +2,18 @@ package com.tekgs.nextgen.tekegg.view.payment;
 
 import com.tekgs.nextgen.tekegg.data.cart.Cart;
 import com.tekgs.nextgen.tekegg.data.cart.CartCalibratable;
-import com.tekgs.nextgen.tekegg.data.financial.payment.TekEggPayment;
+import com.tekgs.nextgen.tekegg.data.financial.payment.TekEggPaymentDefinition;
 import com.tekgs.nextgen.tekegg.data.value.Cents;
 
 
 public class PaymentViewExpected implements PaymentViewCalibratable {
-    private final TekEggPayment payment;
+    private final TekEggPaymentDefinition payment;
     private final Cents totalAmount;
     private final Cents subtotalAmount;
     private final Cents shippingAmount;
 
 
-    public PaymentViewExpected(CartCalibratable cart, TekEggPayment payment) {
+    private PaymentViewExpected(CartCalibratable cart, TekEggPaymentDefinition payment) {
         int subtotal = cart == null ? 0 : cart.getTotal();
         int initialShippingAmount = subtotal == 0 ? 0 : 1000;
         int total = subtotal + initialShippingAmount;
@@ -23,7 +23,7 @@ public class PaymentViewExpected implements PaymentViewCalibratable {
         this.payment = payment;
     }
 
-    public static PaymentViewExpected getInstance(TekEggPayment payment) {
+    public static PaymentViewExpected getInstance(TekEggPaymentDefinition payment) {
         return new PaymentViewExpected(null, payment);
     }
 
@@ -31,7 +31,7 @@ public class PaymentViewExpected implements PaymentViewCalibratable {
         return new PaymentViewExpected(cart, null);
     }
 
-    public static PaymentViewExpected getInstance(Cart cart, TekEggPayment payment) {
+    public static PaymentViewExpected getInstance(Cart cart, TekEggPaymentDefinition payment) {
         return new PaymentViewExpected(cart, payment);
     }
 
